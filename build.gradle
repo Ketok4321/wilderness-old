@@ -140,8 +140,10 @@ def resourceTargets = ['META-INF/mods.toml', 'pack.mcmeta']
 def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/production/${project.name}.main/", "$rootDir/bin/main/"]
 def replaceProperties = [mod_id: mod_id, mod_name: mod_name, mod_version: mod_version,
         mod_authors: mod_authors, mod_description: mod_description,
-        minecraft_version_range: minecraft_version_range, forge_version_range: forge_version_range,
-        loader_version_range: loader_version_range]
+        minecraft_version_range: minecraft_version_range,
+        forge_version_range: forge_version_range,
+        loader_version_range: loader_version_range,
+        blueprint_version_range: blueprint_version_range]
 processResources {
     inputs.properties replaceProperties
     replaceProperties.put 'project', project
