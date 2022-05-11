@@ -1,0 +1,27 @@
+{
+  "selector": "minecraft:adventure/adventuring_time",
+  "priority": "normal",
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "wilderness:old_growth_forest": {
+            "trigger": "minecraft:location",
+            "conditions": {
+              "location": {
+                "biome": "wilderness:old_growth_forest"
+              }
+            }
+          }
+        },
+        "requirements": [
+          [
+            "wilderness:old_growth_forest"
+          ]
+        ],
+        "should_replace_requirements": false
+      }
+    }
+  ]
+}
