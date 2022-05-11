@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.material.Material;
 
+import java.util.List;
 import java.util.Random;
 
 //FIXME: Mushrooms can generate where they can't be placed normally so they break on block update
@@ -52,7 +53,8 @@ public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
         boolean generateStump = random.nextFloat() < 0.75F;
 
         if(!canPlace(level, startPos, length, direction, generateStump)) {
-            return false; //TODO: Try to place in different direction if possible
+            direction = getValidDirection(level, startPos, length, generateStump);
+            if(direction == null) return false;
         }
 
         if(generateStump) {
@@ -81,15 +83,6 @@ public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
     }
 
     private boolean canPlace(WorldGenLevel level, BlockPos startPos, int length, Direction direction, boolean generateStump) {
-        // Could the tree have grown there before it fell?
-//        for(int i = 0; i < length; i++) {
-//            BlockPos pos = startPos.above(i);
-//
-//            if(!isAirOrReplaceablePlant(level, pos)) {
-//                return false;
-//            }
-//        }
-
         // Is there place for a stump?
         if(generateStump) {
             if(!canPlaceOn(level, startPos)) return false;
@@ -109,6 +102,16 @@ public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
 
     private boolean canPlaceOn(WorldGenLevel level, BlockPos pos) {
         return isAirOrReplaceablePlant(level, pos) && isGrassOrDirt(level, pos.below()) && isAir(level, pos.above());
+    }
+
+    private Direction getValidDirection(WorldGenLevel level, BlockPos startPos, int length, boolean generateStump) {
+        for (Direction dir : List.of(Direction.EAST, Direction.WEST, Direction.NORTH, Direction.SOUTH)) {
+            if (canPlace(level, startPos, length, dir, generateStump)) {
+                return dir;
+            }
+        }
+
+        return null;
     }
 
     private boolean isAirOrReplaceablePlant(LevelSimulatedReader level, BlockPos pos) {
