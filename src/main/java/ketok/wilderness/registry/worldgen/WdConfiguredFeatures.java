@@ -7,6 +7,7 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.TreePlacements;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -24,18 +25,11 @@ import java.util.List;
 public class WdConfiguredFeatures {
     public static DeferredRegister<ConfiguredFeature<?, ?>> HELPER = DeferredRegister.create(Registry.CONFIGURED_FEATURE_REGISTRY, Wilderness.MOD_ID);
 
-    //TODO: Fallen trees for other wood types
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_OAK = HELPER.register("fallen_oak",
-            () -> new ConfiguredFeature<>(WdFeatures.FALLEN_TREE.get(), new FallenTreeFeature.Config(
-                    BlockStateProvider.simple(Blocks.OAK_LOG),
-                    UniformInt.of(5, 6),
-                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                            .add(Blocks.MOSS_CARPET.defaultBlockState(), 2)
-                            .add(Blocks.BROWN_MUSHROOM.defaultBlockState(), 1)
-                            .add(Blocks.RED_MUSHROOM.defaultBlockState(), 1)),
-                    0.5F
-            ))
-    );
+    //TODO: Old growth fallen trees?
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_OAK = fallenTree("fallen_oak", Blocks.OAK_LOG, 2, 1);
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_BIRCH = fallenTree("fallen_birch", Blocks.BIRCH_LOG, 2, 1);
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_SPRUCE = fallenTree("fallen_spruce", Blocks.SPRUCE_LOG, 1, 1);
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_JUNGLE_TREE = fallenTree("fallen_jungle_tree", Blocks.JUNGLE_LOG, 1, 0);
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> TREES_OLD_GROWTH_FOREST = HELPER.register("trees_old_growth_forest",
             () -> new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(
@@ -54,4 +48,18 @@ public class WdConfiguredFeatures {
                             .build()
             ))))
     );
+
+    private static RegistryObject<ConfiguredFeature<?, ?>> fallenTree(String name, Block log, int mossWeight, int mushroomWeight) {
+        return HELPER.register(name,
+                () -> new ConfiguredFeature<>(WdFeatures.FALLEN_TREE.get(), new FallenTreeFeature.Config(
+                        BlockStateProvider.simple(log),
+                        UniformInt.of(5, 6),
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Blocks.MOSS_CARPET.defaultBlockState(), mossWeight)
+                                .add(Blocks.BROWN_MUSHROOM.defaultBlockState(), mushroomWeight)
+                                .add(Blocks.RED_MUSHROOM.defaultBlockState(), mushroomWeight)),
+                        0.5F
+                ))
+        );
+    }
 }

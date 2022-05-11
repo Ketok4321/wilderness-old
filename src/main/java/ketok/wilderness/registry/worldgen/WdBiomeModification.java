@@ -20,8 +20,17 @@ public class WdBiomeModification {
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
         MobSpawnSettingsBuilder spawns = event.getSpawns();
 
-        if(DataUtil.matchesKeys(biome, Biomes.FOREST)) {
+        if(DataUtil.matchesKeys(biome, Biomes.FOREST, WdBiomes.OLD_GROWTH_FOREST.getKey())) {
             generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_OAK.getHolder().get());
+        }
+        if(DataUtil.matchesKeys(biome, Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST)) {
+            generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_BIRCH.getHolder().get());
+        }
+        if(DataUtil.matchesKeys(biome, Biomes.TAIGA, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.SNOWY_TAIGA)) {
+            generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_SPRUCE.getHolder().get());
+        }
+        if(DataUtil.matchesKeys(biome, Biomes.SPARSE_JUNGLE, Biomes.JUNGLE)) {
+            generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_JUNGLE_TREE.getHolder().get());
         }
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.world.level.material.Material;
 
 import java.util.Random;
 
+//FIXME: Mushrooms can generate where they can't be placed normally so they break on block update
 public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
     public record Config(BlockStateProvider block, IntProvider length, BlockStateProvider topBlock, float topBlockChance) implements FeatureConfiguration {
         public static final Codec<Config> CODEC = RecordCodecBuilder.create(builder ->
