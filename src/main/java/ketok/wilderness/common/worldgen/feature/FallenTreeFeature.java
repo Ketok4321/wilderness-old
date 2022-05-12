@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
@@ -13,21 +14,23 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.material.Material;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 //FIXME: Mushrooms can generate where they can't be placed normally so they break on block update
 public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
-    public record Config(BlockStateProvider block, IntProvider length, BlockStateProvider topBlock, float topBlockChance) implements FeatureConfiguration {
+    public record Config(BlockStateProvider block, IntProvider length, List<TreeDecorator> decorators) implements FeatureConfiguration {
         public static final Codec<Config> CODEC = RecordCodecBuilder.create(builder ->
                 builder
                         .group(
                                 BlockStateProvider.CODEC.fieldOf("block").forGetter(config -> config.block),
                                 IntProvider.POSITIVE_CODEC.fieldOf("length").forGetter(config -> config.length),
-                                BlockStateProvider.CODEC.fieldOf("top_block").forGetter(config -> config.topBlock),
-                                Codec.floatRange(0, 1).fieldOf("top_block_chance").forGetter(config -> config.topBlockChance)
+                                Codec.list(TreeDecorator.CODEC).fieldOf("decorators").forGetter(config -> config.decorators)
                         )
                         .apply(builder, Config::new)
         );
@@ -57,8 +60,11 @@ public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
             if(direction == null) return false;
         }
 
+        List<BlockPos> placedLogsList = new ArrayList<>(length + (generateStump ? 1 : 0));
+
         if(generateStump) {
             level.setBlock(startPos, config.block.getState(random, startPos), 2);
+            placedLogsList.add(startPos);
 
             startPos = startPos.relative(direction, 2);
         }
@@ -73,11 +79,13 @@ public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
             }
 
             level.setBlock(pos, block, 2);
-
-            if(random.nextFloat() < config.topBlockChance) {
-                level.setBlock(pos.above(), config.topBlock.getState(random, pos.above()), 2);
-            }
+            placedLogsList.add(pos);
         }
+
+        placedLogsList.sort(Comparator.comparingInt(Vec3i::getY));
+        config.decorators.forEach((decorator) -> {
+            decorator.place(level, (pos, block) -> level.setBlock(pos, block, 19), random, placedLogsList, List.of());
+        });
 
         return true;
     }

@@ -24,6 +24,7 @@ public class Wilderness {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         REGISTRY_HELPER.register(bus);
         WdFeatures.HELPER.register(bus);
+        WdFeatures.TreeDecorators.HELPER.register(bus);
         WdConfiguredFeatures.HELPER.register(bus);
         WdPlacedFeatures.HELPER.register(bus);
         StrictMultiNoiseModdedBiomeProvider.register();
