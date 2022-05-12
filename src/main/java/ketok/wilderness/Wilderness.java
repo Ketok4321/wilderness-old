@@ -7,7 +7,9 @@ import ketok.wilderness.registry.worldgen.WdConfiguredFeatures;
 import ketok.wilderness.registry.worldgen.WdFeatures;
 import ketok.wilderness.registry.worldgen.WdPlacedFeatures;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -25,5 +27,7 @@ public class Wilderness {
         WdConfiguredFeatures.HELPER.register(bus);
         WdPlacedFeatures.HELPER.register(bus);
         StrictMultiNoiseModdedBiomeProvider.register();
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WdConfig.COMMON_SPEC);
     }
 }

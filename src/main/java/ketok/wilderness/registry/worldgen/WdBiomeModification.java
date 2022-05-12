@@ -1,6 +1,7 @@
 package ketok.wilderness.registry.worldgen;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
+import ketok.wilderness.WdConfig;
 import ketok.wilderness.Wilderness;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.resources.ResourceLocation;
@@ -23,10 +24,18 @@ public class WdBiomeModification {
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
         MobSpawnSettingsBuilder spawns = event.getSpawns();
 
+        if(WdConfig.COMMON.noLavaLakesInForests.get()) removeForestLavaLakes(event, generation);
+        
+        addFallenTrees(biome, generation);
+    }
+
+    private static void removeForestLavaLakes(BiomeLoadingEvent event, BiomeGenerationSettingsBuilder generation) {
         if(event.getCategory() == Biome.BiomeCategory.FOREST) {
             generation.getFeatures(LAKES).removeIf((feature) -> feature.is(MiscOverworldPlacements.LAKE_LAVA_SURFACE.unwrapKey().get()));
         }
+    }
 
+    private static void addFallenTrees(ResourceLocation biome, BiomeGenerationSettingsBuilder generation) {
         if(DataUtil.matchesKeys(biome, Biomes.FOREST, WdBiomes.OLD_GROWTH_FOREST.getKey())) {
             generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_OAK.getHolder().get());
         }
