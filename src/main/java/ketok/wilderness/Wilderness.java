@@ -2,6 +2,7 @@ package ketok.wilderness;
 
 import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import ketok.wilderness.common.worldgen.StrictMultiNoiseModdedBiomeProvider;
 import ketok.wilderness.registry.worldgen.WdConfiguredFeatures;
 import ketok.wilderness.registry.worldgen.WdFeatures;
 import ketok.wilderness.registry.worldgen.WdPlacedFeatures;
@@ -23,5 +24,6 @@ public class Wilderness {
         WdFeatures.HELPER.register(bus);
         WdConfiguredFeatures.HELPER.register(bus);
         WdPlacedFeatures.HELPER.register(bus);
+        StrictMultiNoiseModdedBiomeProvider.register();
     }
 }
