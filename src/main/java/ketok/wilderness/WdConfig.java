@@ -11,7 +11,7 @@ public class WdConfig {
         Common(ForgeConfigSpec.Builder builder) {
             builder.push("tweaks");
                 noLavaLakesInForests = builder
-                        .comment("If true, surface lava lakes will not generate in biomes with forest category")
+                        .comment("If true, surface lava lakes will not generate in biomes with forest or taiga category")
                         .define("No lava lakes in forests", true);
             builder.pop();
         }

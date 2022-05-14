@@ -1,11 +1,13 @@
-package ketok.wilderness.registry.worldgen;
+package ketok.wilderness.other;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import ketok.wilderness.WdConfig;
 import ketok.wilderness.Wilderness;
+import ketok.wilderness.registry.worldgen.WdBiomes;
+import ketok.wilderness.registry.worldgen.WdPlacedFeatures;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
@@ -30,7 +32,7 @@ public class WdBiomeModification {
     }
 
     private static void removeForestLavaLakes(BiomeLoadingEvent event, BiomeGenerationSettingsBuilder generation) {
-        if(event.getCategory() == Biome.BiomeCategory.FOREST) {
+        if(event.getCategory() == BiomeCategory.FOREST || event.getCategory() == BiomeCategory.TAIGA) {
             generation.getFeatures(LAKES).removeIf((feature) -> feature.is(MiscOverworldPlacements.LAKE_LAVA_SURFACE.unwrapKey().get()));
         }
     }
