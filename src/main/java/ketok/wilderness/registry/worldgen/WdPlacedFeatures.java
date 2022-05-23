@@ -23,7 +23,7 @@ public class WdPlacedFeatures {
     public static final RegistryObject<PlacedFeature> FALLEN_SPRUCE = surfaceFeature("fallen_spruce", WdConfiguredFeatures.FALLEN_SPRUCE.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
     public static final RegistryObject<PlacedFeature> FALLEN_JUNGLE_TREE = surfaceFeature("fallen_jungle_tree", WdConfiguredFeatures.FALLEN_JUNGLE_TREE.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
 
-    public static final RegistryObject<PlacedFeature> TREES_OLD_GROWTH_FOREST = surfaceFeature("trees_old_growth_forest", WdConfiguredFeatures.TREES_OLD_GROWTH_FOREST.getHolder().get(), PlacementUtils.countExtra(8, 0.25F, 2));
+    public static final RegistryObject<PlacedFeature> TREES_OLD_GROWTH_FOREST = surfaceFeature("trees_old_growth_forest", WdConfiguredFeatures.TREES_OLD_GROWTH_FOREST.getHolder().get(), CountPlacement.of(10));
     public static final RegistryObject<PlacedFeature> MUSHROOM_OLD_GROWTH_FOREST = surfaceFeature("mushroom_old_growth_forest", WdConfiguredFeatures.BROWN_RED_MUSHROOM_PATCH.getHolder().get(), CountPlacement.of(3), RarityFilter.onAverageOnceEvery(2));
     public static final RegistryObject<PlacedFeature> ROCK_OLD_GROWTH_FOREST = surfaceFeature("rock_old_growth_forest", MiscOverworldFeatures.FOREST_ROCK, RarityFilter.onAverageOnceEvery(4));
 
