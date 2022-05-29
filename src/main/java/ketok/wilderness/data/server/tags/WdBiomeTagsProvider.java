@@ -19,7 +19,8 @@ public class WdBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(WdBiomes.OLD_GROWTH_FOREST, BiomeTags.IS_FOREST, BiomeTags.HAS_STRONGHOLD, BlueprintBiomeTags.IS_OVERWORLD);
+        tag(WdBiomes.OLD_GROWTH_FOREST, BlueprintBiomeTags.IS_OVERWORLD, BiomeTags.IS_FOREST, BiomeTags.HAS_STRONGHOLD);
+        tag(WdBiomes.MIXED_FOREST, BlueprintBiomeTags.IS_OVERWORLD, BiomeTags.IS_FOREST, BiomeTags.IS_TAIGA, BiomeTags.HAS_STRONGHOLD);
     }
 
     @SafeVarargs

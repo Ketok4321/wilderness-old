@@ -17,11 +17,13 @@ import static net.minecraft.world.level.levelgen.GenerationStep.Decoration.*;
 import static net.minecraft.world.entity.EntityType.*;
 import static net.minecraft.world.entity.MobCategory.*;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 @Mod.EventBusSubscriber(modid = Wilderness.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WdBiomes {
     public static final BiomeSubRegistryHelper HELPER = Wilderness.REGISTRY_HELPER.getBiomeSubHelper();
 
     public static final BiomeSubRegistryHelper.KeyedBiome OLD_GROWTH_FOREST = HELPER.createBiome("old_growth_forest", WdBiomes::createOldGrowthForestBiome);
+    public static final BiomeSubRegistryHelper.KeyedBiome MIXED_FOREST = HELPER.createBiome("mixed_forest", WdBiomes::createMixedForestBiome);
 
     private static Biome createOldGrowthForestBiome() {
         BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder();
@@ -32,12 +34,41 @@ public class WdBiomes {
         addDefaultSoftDisks(generation);
         addDefaultFlowers(generation);
         addForestGrass(generation);
-        generation.addFeature(VEGETAL_DECORATION, PATCH_TALL_GRASS);;
+        generation.addFeature(VEGETAL_DECORATION, PATCH_TALL_GRASS);
         generation.addFeature(VEGETAL_DECORATION, PATCH_DEAD_BUSH);
         addDefaultExtraVegetation(generation);
         generation.addFeature(VEGETAL_DECORATION, TREES_OLD_GROWTH_FOREST.getHolder().get());
-        generation.addFeature(VEGETAL_DECORATION, MUSHROOM_OLD_GROWTH_FOREST.getHolder().get());
-        generation.addFeature(LOCAL_MODIFICATIONS, ROCK_OLD_GROWTH_FOREST.getHolder().get());
+        generation.addFeature(VEGETAL_DECORATION, BROWN_RED_MUSHROOM_PATCH.getHolder().get());
+        generation.addFeature(LOCAL_MODIFICATIONS, FOREST_ROCK_RARE.getHolder().get());
+
+        MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder();
+        farmAnimals(spawns);
+        commonSpawns(spawns);
+        spawns.addSpawn(CREATURE, new SpawnerData(WOLF, 8, 4, 4));
+        spawns.addSpawn(CREATURE, new SpawnerData(RABBIT, 2, 2, 3));
+
+        return new WdBiomeBuilder()
+                .generationAndSpawns(generation, spawns)
+                .category(BiomeCategory.FOREST)
+                .temperatureAndDownfall(0.7F, 0.8F)
+                .build();
+    }
+
+    private static Biome createMixedForestBiome() {
+        BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder();
+        globalOverworldGeneration(generation);
+
+        addDefaultOres(generation);
+        addDefaultSoftDisks(generation);
+        addDefaultFlowers(generation);
+        addForestGrass(generation);
+        generation.addFeature(VEGETAL_DECORATION, PATCH_DEAD_BUSH_2);
+        addDefaultMushrooms(generation);
+        addDefaultExtraVegetation(generation);
+        generation.addFeature(VEGETAL_DECORATION, TREES_MIXED_FOREST.getHolder().get());
+        generation.addFeature(LOCAL_MODIFICATIONS, FOREST_ROCK_RARE.getHolder().get());
+        generation.addFeature(LOCAL_MODIFICATIONS, PATCH_COARSE_DIRT.getHolder().get());
+        generation.addFeature(LOCAL_MODIFICATIONS, PATCH_PODZOL.getHolder().get());
 
         MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder();
         farmAnimals(spawns);
@@ -49,7 +80,7 @@ public class WdBiomes {
         return new WdBiomeBuilder()
                 .generationAndSpawns(generation, spawns)
                 .category(BiomeCategory.FOREST)
-                .temperatureAndDownfall(0.7F, 0.8F)
+                .temperatureAndDownfall(0.5F, 0.8F)
                 .build();
     }
 

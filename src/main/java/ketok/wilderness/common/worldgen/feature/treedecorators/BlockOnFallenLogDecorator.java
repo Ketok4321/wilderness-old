@@ -6,6 +6,7 @@ import ketok.wilderness.registry.worldgen.WdFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
@@ -44,7 +45,7 @@ public class BlockOnFallenLogDecorator extends TreeDecorator {
     @Override
     public void place(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> blockSetter, Random random, List<BlockPos> logPositions, List<BlockPos> leafPositions) {
         for (BlockPos pos : logPositions) {
-            if(!level.isStateAtPosition(pos.above(), (state) -> state.isAir())) continue;
+            if(!level.isStateAtPosition(pos.above(), BlockBehaviour.BlockStateBase::isAir)) continue;
             if(random.nextFloat() < chance) blockSetter.accept(pos.above(), block);
         }
     }

@@ -13,11 +13,22 @@
                 "biome": "wilderness:old_growth_forest"
               }
             }
+          },
+          "wilderness:mixed_forest": {
+            "trigger": "minecraft:location",
+            "conditions": {
+              "location": {
+                "biome": "wilderness:mixed_forest"
+              }
+            }
           }
         },
         "requirements": [
           [
             "wilderness:old_growth_forest"
+          ],
+          [
+            "wilderness:mixed_forest"
           ]
         ],
         "should_replace_requirements": false
