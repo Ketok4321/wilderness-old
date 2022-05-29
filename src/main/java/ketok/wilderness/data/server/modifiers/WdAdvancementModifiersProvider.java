@@ -11,8 +11,8 @@ import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.LocationTrigger;
 import net.minecraft.data.DataGenerator;
 
-public class WdAdvancementModifierProvider extends AdvancementModifierProvider {
-    public WdAdvancementModifierProvider(DataGenerator dataGenerator) {
+public class WdAdvancementModifiersProvider extends AdvancementModifierProvider {
+    public WdAdvancementModifiersProvider(DataGenerator dataGenerator) {
         super(dataGenerator, Wilderness.MOD_ID);
     }
 

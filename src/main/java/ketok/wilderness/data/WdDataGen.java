@@ -1,7 +1,7 @@
 package ketok.wilderness.data;
 
 import ketok.wilderness.Wilderness;
-import ketok.wilderness.data.server.modifiers.WdAdvancementModifierProvider;
+import ketok.wilderness.data.server.modifiers.WdAdvancementModifiersProvider;
 import ketok.wilderness.data.server.tags.WdBiomeTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -17,7 +17,7 @@ public class WdDataGen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         if (event.includeServer()) {
-            dataGenerator.addProvider(new WdAdvancementModifierProvider(dataGenerator));
+            dataGenerator.addProvider(new WdAdvancementModifiersProvider(dataGenerator));
             dataGenerator.addProvider(new WdBiomeTagsProvider(dataGenerator, existingFileHelper));
         }
 
