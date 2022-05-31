@@ -2,4 +2,5 @@ fbeec1eeb248e1ed52132d33d4903ede55418166 data/forge/tags/worldgen/biome/is_overw
 fbeec1eeb248e1ed52132d33d4903ede55418166 data/minecraft/tags/worldgen/biome/has_structure/stronghold.json
 fbeec1eeb248e1ed52132d33d4903ede55418166 data/minecraft/tags/worldgen/biome/is_forest.json
 a56f437d0b0530086da8fca206e2524c98200b3b data/minecraft/tags/worldgen/biome/is_taiga.json
+09412b7c9f465b3a29febb97b639d4acd5e2a9b3 data/wilderness/modded_biome_slices/overworld_slice.json
 866d39dbb54ca419e9c68d6ef4cc1ac01d0eaa44 data/wilderness/modifiers/advancements/adventure/adventuring_time.json

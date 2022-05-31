@@ -1,6 +1,7 @@
 package ketok.wilderness.data;
 
 import ketok.wilderness.Wilderness;
+import ketok.wilderness.data.server.WdModdedBiomeSlicesProvider;
 import ketok.wilderness.data.server.modifiers.WdAdvancementModifiersProvider;
 import ketok.wilderness.data.server.tags.WdBiomeTagsProvider;
 import net.minecraft.data.DataGenerator;
@@ -19,6 +20,7 @@ public class WdDataGen {
         if (event.includeServer()) {
             dataGenerator.addProvider(new WdAdvancementModifiersProvider(dataGenerator));
             dataGenerator.addProvider(new WdBiomeTagsProvider(dataGenerator, existingFileHelper));
+            dataGenerator.addProvider(new WdModdedBiomeSlicesProvider(dataGenerator));
         }
 
         if (event.includeClient()) {
