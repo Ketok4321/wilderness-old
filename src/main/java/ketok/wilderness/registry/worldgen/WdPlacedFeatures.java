@@ -31,7 +31,7 @@ public class WdPlacedFeatures {
 
     // Trees for biomes
     public static final RegistryObject<PlacedFeature> TREES_OLD_GROWTH_FOREST = surfaceFeature("trees_old_growth_forest", WdConfiguredFeatures.TREES_OLD_GROWTH_FOREST.getHolder().get(), CountPlacement.of(10));
-    public static final RegistryObject<PlacedFeature> TREES_MIXED_FOREST = surfaceFeature("trees_mixed_forest", WdConfiguredFeatures.TREES_MIXED_FOREST.getHolder().get(), CountPlacement.of(5));
+    public static final RegistryObject<PlacedFeature> TREES_MIXED_FOREST = surfaceFeature("trees_mixed_forest", WdConfiguredFeatures.TREES_MIXED_FOREST.getHolder().get(), CountPlacement.of(8));
 
     // Other
     public static final RegistryObject<PlacedFeature> BROWN_RED_MUSHROOM_PATCH = surfaceFeature("brown_red_mushroom_patch", WdConfiguredFeatures.BROWN_RED_MUSHROOM_PATCH.getHolder().get(), CountPlacement.of(3), RarityFilter.onAverageOnceEvery(2));
