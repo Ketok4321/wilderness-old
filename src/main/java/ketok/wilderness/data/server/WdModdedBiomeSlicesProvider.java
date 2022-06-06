@@ -14,9 +14,9 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.*;
 
 import java.util.ArrayList;
@@ -41,45 +41,45 @@ public class WdModdedBiomeSlicesProvider extends ModdedBiomeSliceProvider {
                         at -> at.erosion(-1.0F, -OverworldBiomeBuilder.PEAK_START).offset(0.2F)
                 );
 
-        registerSlice("overworld_slice", 5, overworldSlice.build(), new ResourceLocation("minecraft:overworld"));
+        registerSlice("overworld_slice", 5, overworldSlice.build(), Level.OVERWORLD.location());
     }
 
     protected static class OverlayModdedBiomeProviderBuilder {
-        private final List<OverlayBuilder> biomes = new ArrayList<>();
+        private final List<MultiNoiseBuilder> biomes = new ArrayList<>();
         private final Registry<Biome> biomeReg = RegistryAccess.BUILTIN.get().registryOrThrow(Registry.BIOME_REGISTRY);
 
         @SafeVarargs
-        public final OverlayBuilder overlay(Holder<Biome>... matchesBiomes) {
+        public final MultiNoiseBuilder overlay(Holder<Biome>... matchesBiomes) {
             return overlay(HolderSet.direct(matchesBiomes));
         }
 
-        public OverlayBuilder overlay(TagKey<Biome> matchesBiomes) {
+        public MultiNoiseBuilder overlay(TagKey<Biome> matchesBiomes) {
             return overlay(biomeReg.getOrCreateTag(matchesBiomes));
         }
 
-        public OverlayBuilder overlay(HolderSet<Biome> matchesBiomes) {
-            OverlayBuilder builder = new OverlayBuilder(matchesBiomes, biomeReg);
+        public MultiNoiseBuilder overlay(HolderSet<Biome> matchesBiomes) {
+            MultiNoiseBuilder builder = new MultiNoiseBuilder(matchesBiomes, biomeReg);
             biomes.add(builder);
             return builder;
         }
 
-        public static class OverlayBuilder {
+        public static class MultiNoiseBuilder {
             private final HolderSet<Biome> matchesBiomes;
             private final List<Pair<Climate.ParameterPoint, Holder<Biome>>> parameterList = new ArrayList<>();
             private final Registry<Biome> biomeReg;
 
-            public OverlayBuilder(HolderSet<Biome> matchesBiomes, Registry<Biome> biomeReg) {
+            public MultiNoiseBuilder(HolderSet<Biome> matchesBiomes, Registry<Biome> biomeReg) {
                 this.matchesBiomes = matchesBiomes;
                 this.biomeReg = biomeReg;
             }
 
             @SafeVarargs
-            public final OverlayBuilder withBiome(KeyedBiome biome, Consumer<ParameterPointBuilder>... at) {
+            public final MultiNoiseBuilder withBiome(KeyedBiome biome, Consumer<ParameterPointBuilder>... at) {
                 return withBiome(biome.getKey(), at);
             }
 
             @SafeVarargs
-            public final OverlayBuilder withBiome(ResourceKey<Biome> biome, Consumer<ParameterPointBuilder>... at) {
+            public final MultiNoiseBuilder withBiome(ResourceKey<Biome> biome, Consumer<ParameterPointBuilder>... at) {
                 for(Consumer<ParameterPointBuilder> parameterPointBuilder : at) {
                     ParameterPointBuilder parameterPoint = new ParameterPointBuilder();
                     parameterPointBuilder.accept(parameterPoint);
@@ -95,7 +95,7 @@ public class WdModdedBiomeSlicesProvider extends ModdedBiomeSliceProvider {
         }
 
         public BiomeUtil.OverlayModdedBiomeProvider build() {
-            return new BiomeUtil.OverlayModdedBiomeProvider(biomes.stream().map(OverlayBuilder::build).collect(Collectors.toList()));
+            return new BiomeUtil.OverlayModdedBiomeProvider(biomes.stream().map(MultiNoiseBuilder::build).collect(Collectors.toList()));
         }
     }
 }
