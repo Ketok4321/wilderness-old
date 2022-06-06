@@ -3,6 +3,7 @@ package ketok.wilderness.registry.worldgen;
 import ketok.wilderness.Wilderness;
 import ketok.wilderness.common.worldgen.feature.FallenTreeFeature;
 import ketok.wilderness.common.worldgen.feature.treedecorators.BlockOnFallenLogDecorator;
+import ketok.wilderness.registry.WdBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.TreePlacements;
@@ -32,6 +33,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.OptionalInt;
+import java.util.function.Supplier;
 
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 public class WdConfiguredFeatures {
@@ -41,10 +43,10 @@ public class WdConfiguredFeatures {
     private static BlockOnFallenLogDecorator block(Block block, float chance) {
         return new BlockOnFallenLogDecorator(block, chance);
     }
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_OAK = fallenTree("fallen_oak", Blocks.OAK_LOG, block(Blocks.MOSS_CARPET, 0.4F), block(Blocks.BROWN_MUSHROOM, 0.2F), block(Blocks.RED_MUSHROOM, 0.2F));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_BIRCH = fallenTree("fallen_birch", Blocks.BIRCH_LOG, block(Blocks.MOSS_CARPET, 0.4F), block(Blocks.BROWN_MUSHROOM, 0.2F), block(Blocks.RED_MUSHROOM, 0.2F));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_SPRUCE = fallenTree("fallen_spruce", Blocks.SPRUCE_LOG, block(Blocks.MOSS_CARPET, 0.3F), block(Blocks.BROWN_MUSHROOM, 0.3F), block(Blocks.RED_MUSHROOM, 0.3F));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_JUNGLE_TREE = fallenTree("fallen_jungle_tree", Blocks.JUNGLE_LOG, TrunkVineDecorator.INSTANCE, block(Blocks.MOSS_CARPET, 0.5F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_OAK = fallenTree("fallen_oak", () -> BlockStateProviders.MOSSY_OAK_LOG, block(Blocks.MOSS_CARPET, 0.4F), block(Blocks.BROWN_MUSHROOM, 0.2F), block(Blocks.RED_MUSHROOM, 0.2F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_BIRCH = fallenTree("fallen_birch", () -> BlockStateProvider.simple(Blocks.BIRCH_LOG), block(Blocks.MOSS_CARPET, 0.4F), block(Blocks.BROWN_MUSHROOM, 0.2F), block(Blocks.RED_MUSHROOM, 0.2F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_SPRUCE = fallenTree("fallen_spruce", () -> BlockStateProvider.simple(Blocks.SPRUCE_LOG), block(Blocks.MOSS_CARPET, 0.3F), block(Blocks.BROWN_MUSHROOM, 0.3F), block(Blocks.RED_MUSHROOM, 0.3F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_JUNGLE_TREE = fallenTree("fallen_jungle_tree", () -> BlockStateProvider.simple(Blocks.JUNGLE_LOG), TrunkVineDecorator.INSTANCE, block(Blocks.MOSS_CARPET, 0.5F));
 
     // Trees
     public static final RegistryObject<ConfiguredFeature<?, ?>> MEDIUM_OAK = HELPER.register("medium_oak",
@@ -88,10 +90,10 @@ public class WdConfiguredFeatures {
     public static final RegistryObject<ConfiguredFeature<?, ?>> PATCH_COARSE_DIRT = surfacePatch("patch_coarse_dirt", Blocks.COARSE_DIRT);
     public static final RegistryObject<ConfiguredFeature<?, ?>> PATCH_PODZOL = surfacePatch("patch_podzol", Blocks.PODZOL);
 
-    private static RegistryObject<ConfiguredFeature<?, ?>> fallenTree(String name, Block log, TreeDecorator... decorators) {
+    private static RegistryObject<ConfiguredFeature<?, ?>> fallenTree(String name, Supplier<BlockStateProvider> log, TreeDecorator... decorators) {
         return HELPER.register(name,
                 () -> new ConfiguredFeature<>(WdFeatures.FALLEN_TREE.get(), new FallenTreeFeature.Config(
-                        BlockStateProvider.simple(log),
+                        log.get(),
                         UniformInt.of(5, 6),
                         List.of(decorators)
                 ))
@@ -108,5 +110,9 @@ public class WdConfiguredFeatures {
                         )
                 )
         );
+    }
+
+    public static class BlockStateProviders {
+        public static BlockStateProvider MOSSY_OAK_LOG = new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>().add(WdBlocks.MOSSY_OAK_LOG.get().defaultBlockState(), 2).add(Blocks.OAK_LOG.defaultBlockState(), 1));
     }
 }
