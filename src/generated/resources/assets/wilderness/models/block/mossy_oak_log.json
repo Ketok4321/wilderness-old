@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "side": "wilderness:block/mossy_oak_log",
-    "end": "minecraft:block/oak_log_top"
+    "end": "wilderness:block/mossy_oak_log_top"
   }
 }
