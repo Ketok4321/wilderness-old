@@ -24,6 +24,7 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
@@ -51,12 +52,19 @@ public class WdConfiguredFeatures {
     // Trees
     public static final RegistryObject<ConfiguredFeature<?, ?>> MEDIUM_OAK = HELPER.register("medium_oak",
             () -> new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                    BlockStateProvider.simple(Blocks.OAK_LOG),
+                    BlockStateProviders.MOSSY_OAK_LOG/*BlockStateProvider.simple(Blocks.OAK_LOG)*/,
                     new FancyTrunkPlacer(6, 2, 0),
                     BlockStateProvider.simple(Blocks.OAK_LEAVES),
                     new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4),
                     new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
             ).ignoreVines().build()));
+
+    public static final RegistryObject<ConfiguredFeature<?, ?>> MOSSY_FANCY_OAK = HELPER.register("mossy_fancy_oak",
+            () -> new ConfiguredFeature<>(Feature.TREE, createFancyOak(BlockStateProviders.MOSSY_OAK_LOG)
+                    .decorators(List.of(new BeehiveDecorator(0.02F)))
+                    .build()
+            )
+    );
 
     // Trees for biomes
     public static final RegistryObject<ConfiguredFeature<?, ?>> TREES_OLD_GROWTH_FOREST = HELPER.register("trees_old_growth_forest",
@@ -64,7 +72,7 @@ public class WdConfiguredFeatures {
                     List.of(
                             new WeightedPlacedFeature(TreePlacements.OAK_BEES_002, 0.1F),
                             new WeightedPlacedFeature(TreePlacements.BIRCH_BEES_002, 0.1F)
-                    ), TreePlacements.FANCY_OAK_BEES_002
+                    ), WdPlacedFeatures.MOSSY_FANCY_OAK.getHolder().get()
             ))
     );
 
@@ -110,6 +118,10 @@ public class WdConfiguredFeatures {
                         )
                 )
         );
+    }
+
+    private static TreeConfiguration.TreeConfigurationBuilder createFancyOak(BlockStateProvider trunkProvider) {
+        return (new TreeConfiguration.TreeConfigurationBuilder(trunkProvider, new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(Blocks.OAK_LEAVES), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines();
     }
 
     public static class BlockStateProviders {

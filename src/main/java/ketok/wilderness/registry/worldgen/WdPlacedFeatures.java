@@ -22,6 +22,7 @@ public class WdPlacedFeatures {
 
     // Trees
     public static final RegistryObject<PlacedFeature> MEDIUM_OAK = treeFeature("medium_oak", WdConfiguredFeatures.MEDIUM_OAK.getHolder().get());
+    public static final RegistryObject<PlacedFeature> MOSSY_FANCY_OAK = treeFeature("mossy_fancy_oak", WdConfiguredFeatures.MOSSY_FANCY_OAK.getHolder().get());
 
     // Fallen trees
     public static final RegistryObject<PlacedFeature> FALLEN_OAK = surfaceFeature("fallen_oak", WdConfiguredFeatures.FALLEN_OAK.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
