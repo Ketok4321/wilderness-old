@@ -35,10 +35,10 @@ public class WdModdedBiomeSlicesProvider extends ModdedBiomeSliceProvider {
 
         overworldSlice.overlay(BiomeTags.IS_FOREST)
                 .withBiome(WdBiomes.MIXED_FOREST, at -> at.temperature(-1.0F))
-                .withBiome(WdBiomes.OLD_GROWTH_FOREST, at -> at.temperature(1.0F))
+                .withBiome(WdBiomes.OLD_GROWTH_FOREST, at -> at.temperature(0.2F).weirdness(1.0F))
                 .withBiome(BlueprintBiomes.ORIGINAL_SOURCE_MARKER,
-                        at -> at.weirdness(1.0F),
-                        at -> at.erosion(-1.0F, -OverworldBiomeBuilder.PEAK_START).offset(0.2F)
+                        at -> at.temperature(1.0F),
+                        at -> at.erosion(-1.0F, -OverworldBiomeBuilder.PEAK_START).offset(0.75F)
                 );
 
         registerSlice("overworld_slice", 5, overworldSlice.build(), Level.OVERWORLD.location());
