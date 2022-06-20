@@ -25,10 +25,10 @@ public class WdPlacedFeatures {
     public static final RegistryObject<PlacedFeature> MOSSY_FANCY_OAK = treeFeature("mossy_fancy_oak", WdConfiguredFeatures.MOSSY_FANCY_OAK.getHolder().get());
 
     // Fallen trees
-    public static final RegistryObject<PlacedFeature> FALLEN_OAK = surfaceFeature("fallen_oak", WdConfiguredFeatures.FALLEN_OAK.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
-    public static final RegistryObject<PlacedFeature> FALLEN_BIRCH = surfaceFeature("fallen_birch", WdConfiguredFeatures.FALLEN_BIRCH.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
-    public static final RegistryObject<PlacedFeature> FALLEN_SPRUCE = surfaceFeature("fallen_spruce", WdConfiguredFeatures.FALLEN_SPRUCE.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
-    public static final RegistryObject<PlacedFeature> FALLEN_JUNGLE_TREE = surfaceFeature("fallen_jungle_tree", WdConfiguredFeatures.FALLEN_JUNGLE_TREE.getHolder().get(), RarityFilter.onAverageOnceEvery(6));
+    public static final RegistryObject<PlacedFeature> FALLEN_OAK = surfaceFeature("fallen_oak", WdConfiguredFeatures.FALLEN_OAK.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
+    public static final RegistryObject<PlacedFeature> FALLEN_BIRCH = surfaceFeature("fallen_birch", WdConfiguredFeatures.FALLEN_BIRCH.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
+    public static final RegistryObject<PlacedFeature> FALLEN_SPRUCE = surfaceFeature("fallen_spruce", WdConfiguredFeatures.FALLEN_SPRUCE.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
+    public static final RegistryObject<PlacedFeature> FALLEN_JUNGLE_TREE = surfaceFeature("fallen_jungle_tree", WdConfiguredFeatures.FALLEN_JUNGLE_TREE.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
 
     // Trees for biomes
     public static final RegistryObject<PlacedFeature> TREES_OLD_GROWTH_FOREST = surfaceFeature("trees_old_growth_forest", WdConfiguredFeatures.TREES_OLD_GROWTH_FOREST.getHolder().get(), CountPlacement.of(10));
