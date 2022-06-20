@@ -4,9 +4,12 @@ import ketok.wilderness.Wilderness;
 import ketok.wilderness.common.worldgen.feature.FallenTreeFeature;
 import ketok.wilderness.common.worldgen.feature.treedecorators.BlockOnFallenLogDecorator;
 import ketok.wilderness.registry.WdBlocks;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.TreePlacements;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -16,10 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -28,6 +28,7 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorato
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -95,8 +96,32 @@ public class WdConfiguredFeatures {
             ))))
     );
 
+    //TODO: Use Feature.VEGETATION_PATCH?
     public static final RegistryObject<ConfiguredFeature<?, ?>> PATCH_COARSE_DIRT = surfacePatch("patch_coarse_dirt", Blocks.COARSE_DIRT);
     public static final RegistryObject<ConfiguredFeature<?, ?>> PATCH_PODZOL = surfacePatch("patch_podzol", Blocks.PODZOL);
+
+    public static final RegistryObject<ConfiguredFeature<?, ?>> PATCH_MOSS = HELPER.register("patch_moss",
+            () -> new ConfiguredFeature<>(Feature.VEGETATION_PATCH,
+                    new VegetationPatchConfiguration(
+                            BlockTags.DIRT,
+                            BlockStateProvider.simple(Blocks.MOSS_BLOCK),
+                            PlacementUtils.inlinePlaced(Holder.direct(new ConfiguredFeature<>(Feature.SIMPLE_BLOCK,
+                                    new SimpleBlockConfiguration(new WeightedStateProvider(
+                                           SimpleWeightedRandomList.<BlockState>builder()
+                                                   .add(Blocks.MOSS_CARPET.defaultBlockState(), 8)
+                                                   .add(Blocks.GRASS.defaultBlockState(), 2)
+                                    ))
+                            ))),
+                            CaveSurface.FLOOR,
+                            ConstantInt.of(1),
+                            0,
+                            5,
+                            0.5F,
+                            UniformInt.of(1, 2),
+                            0.3F
+                    )
+            )
+    );
 
     private static RegistryObject<ConfiguredFeature<?, ?>> fallenTree(String name, Supplier<BlockStateProvider> log, TreeDecorator... decorators) {
         return HELPER.register(name,

@@ -39,6 +39,7 @@ public class WdPlacedFeatures {
     public static final RegistryObject<PlacedFeature> FOREST_ROCK_RARE = surfaceFeature("forest_rock_rare", MiscOverworldFeatures.FOREST_ROCK, RarityFilter.onAverageOnceEvery(4));
     public static final RegistryObject<PlacedFeature> PATCH_COARSE_DIRT = surfaceFeature("patch_coarse_dirt", WdConfiguredFeatures.PATCH_COARSE_DIRT.getHolder().get(), CountPlacement.of(2));
     public static final RegistryObject<PlacedFeature> PATCH_PODZOL = surfaceFeature("patch_podzol", WdConfiguredFeatures.PATCH_PODZOL.getHolder().get(), CountPlacement.of(1));
+    public static final RegistryObject<PlacedFeature> PATCH_MOSS = surfaceFeature("patch_moss", WdConfiguredFeatures.PATCH_MOSS.getHolder().get(), CountPlacement.of(2));
 
     private static RegistryObject<PlacedFeature> surfaceFeature(String name, Holder<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... placementModifiers) {
         ArrayList<PlacementModifier> modifiers = new ArrayList<>();
