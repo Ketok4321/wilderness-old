@@ -26,9 +26,9 @@ public class WdBiomeModification {
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
         MobSpawnSettingsBuilder spawns = event.getSpawns();
 
-        if(WdConfig.COMMON.noLavaLakesInForests.get()) removeForestLavaLakes(event, generation);
-        
-        addFallenTrees(biome, generation);
+        if(WdConfig.COMMON.generateFallenTrees.get()) addFallenTrees(biome, generation);
+
+        if(WdConfig.COMMON.removeLavaLakesFromForests.get()) removeForestLavaLakes(event, generation);
     }
 
     private static void removeForestLavaLakes(BiomeLoadingEvent event, BiomeGenerationSettingsBuilder generation) {
@@ -40,6 +40,9 @@ public class WdBiomeModification {
     private static void addFallenTrees(ResourceLocation biome, BiomeGenerationSettingsBuilder generation) {
         if(DataUtil.matchesKeys(biome, FOREST, OLD_GROWTH_FOREST.getKey(), MIXED_FOREST.getKey())) {
             generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_OAK.getHolder().get());
+        }
+        if(DataUtil.matchesKeys(biome, SWAMP)) {
+            generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_SWAMP_TREE.getHolder().get());
         }
         if(DataUtil.matchesKeys(biome, BIRCH_FOREST, OLD_GROWTH_BIRCH_FOREST)) {
             generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_BIRCH.getHolder().get());

@@ -26,6 +26,7 @@ public class WdPlacedFeatures {
 
     // Fallen trees
     public static final RegistryObject<PlacedFeature> FALLEN_OAK = surfaceFeature("fallen_oak", WdConfiguredFeatures.FALLEN_OAK.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
+    public static final RegistryObject<PlacedFeature> FALLEN_SWAMP_TREE = surfaceFeature("fallen_swamp_tree", WdConfiguredFeatures.FALLEN_SWAMP_TREE.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
     public static final RegistryObject<PlacedFeature> FALLEN_BIRCH = surfaceFeature("fallen_birch", WdConfiguredFeatures.FALLEN_BIRCH.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
     public static final RegistryObject<PlacedFeature> FALLEN_SPRUCE = surfaceFeature("fallen_spruce", WdConfiguredFeatures.FALLEN_SPRUCE.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
     public static final RegistryObject<PlacedFeature> FALLEN_JUNGLE_TREE = surfaceFeature("fallen_jungle_tree", WdConfiguredFeatures.FALLEN_JUNGLE_TREE.getHolder().get(), RarityFilter.onAverageOnceEvery(8));
