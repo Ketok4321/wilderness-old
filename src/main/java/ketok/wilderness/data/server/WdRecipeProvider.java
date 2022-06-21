@@ -22,5 +22,7 @@ public class WdRecipeProvider extends RecipeProvider {
                 .requires(Blocks.MOSS_BLOCK)
                 .unlockedBy("has_moss", has(Blocks.MOSS_BLOCK))
                 .save(consumer);
+
+        woodFromLogs(consumer, WdBlocks.MOSSY_OAK_WOOD.get(), WdBlocks.MOSSY_OAK_LOG.get());
     }
 }

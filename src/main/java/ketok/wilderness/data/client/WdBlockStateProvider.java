@@ -14,5 +14,6 @@ public class WdBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         logBlock(WdBlocks.MOSSY_OAK_LOG.get());
+        axisBlock(WdBlocks.MOSSY_OAK_WOOD.get(), blockTexture(WdBlocks.MOSSY_OAK_LOG.get()), blockTexture(WdBlocks.MOSSY_OAK_LOG.get()));
     }
 }

@@ -15,6 +15,6 @@ public class WdBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(BlockTags.OAK_LOGS).add(WdBlocks.MOSSY_OAK_LOG.get());
+        tag(BlockTags.OAK_LOGS).add(WdBlocks.MOSSY_OAK_LOG.get(), WdBlocks.MOSSY_OAK_WOOD.get());
     }
 }

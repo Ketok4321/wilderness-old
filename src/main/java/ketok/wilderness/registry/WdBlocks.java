@@ -1,6 +1,7 @@
 package ketok.wilderness.registry;
 
 import com.teamabnormals.blueprint.common.block.wood.LogBlock;
+import com.teamabnormals.blueprint.common.block.wood.WoodBlock;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import ketok.wilderness.Wilderness;
@@ -17,8 +18,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class WdBlocks {
     public static final BlockSubRegistryHelper HELPER = Wilderness.REGISTRY_HELPER.getBlockSubHelper();
 
-    //TODO: Mossy oak wood
     public static final RegistryObject<LogBlock> MOSSY_OAK_LOG = HELPER.createBlock("mossy_oak_log", () -> new MossyLogBlock(() -> Blocks.OAK_LOG, BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<WoodBlock> MOSSY_OAK_WOOD = HELPER.createBlock("mossy_oak_wood", () -> new WoodBlock(() -> Blocks.OAK_WOOD, BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
