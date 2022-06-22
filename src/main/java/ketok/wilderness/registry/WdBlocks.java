@@ -25,6 +25,7 @@ public class WdBlocks {
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             DataUtil.registerFlammable(MOSSY_OAK_LOG.get(), 5, 5);
+            DataUtil.registerFlammable(MOSSY_OAK_WOOD.get(), 5, 5);
         });
     }
 }
