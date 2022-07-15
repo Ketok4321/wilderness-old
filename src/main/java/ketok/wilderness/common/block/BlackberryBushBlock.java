@@ -1,5 +1,6 @@
 package ketok.wilderness.common.block;
 
+import ketok.wilderness.registry.WdBlocks;
 import ketok.wilderness.registry.WdItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -19,6 +20,10 @@ import net.minecraft.world.phys.BlockHitResult;
 public class BlackberryBushBlock extends SweetBerryBushBlock {
     public BlackberryBushBlock(Properties p_57249_) {
         super(p_57249_);
+    }
+
+    public static BlockState aged(int age) {
+        return WdBlocks.BLACKBERRY_BUSH.get().defaultBlockState().setValue(BlackberryBushBlock.AGE, age);
     }
 
     @Override
