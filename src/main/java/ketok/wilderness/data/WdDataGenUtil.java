@@ -2,7 +2,6 @@ package ketok.wilderness.data;
 
 import ketok.wilderness.registry.WdBlocks;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
@@ -17,7 +16,7 @@ public class WdDataGenUtil {
     }
 
     public static Stream<Block> wdBlockItems() {
-        return wdBlocks().filter(block -> block.asItem() != Items.AIR);
+        return wdBlocks().filter(block -> block.asItem().getRegistryName().equals(block.getRegistryName()));
     }
 
     public static String name(ForgeRegistryEntry<?> regEntry) {

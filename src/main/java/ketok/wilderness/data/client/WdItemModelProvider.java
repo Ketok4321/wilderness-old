@@ -1,7 +1,10 @@
 package ketok.wilderness.data.client;
 
 import ketok.wilderness.Wilderness;
+import ketok.wilderness.registry.WdItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -15,5 +18,11 @@ public class WdItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         wdBlockItems().forEach(block -> withExistingParent(name(block), prefix("block/", block.getRegistryName())));
+
+        generated(WdItems.BLACKBERRIES.get());
+    }
+
+    private void generated(Item item) {
+        withExistingParent(name(item), "item/generated").texture("layer0", new ResourceLocation(this.modid, "item/" + name(item)));
     }
 }

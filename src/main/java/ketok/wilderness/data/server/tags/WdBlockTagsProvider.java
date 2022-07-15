@@ -16,5 +16,9 @@ public class WdBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags() {
         tag(BlockTags.OAK_LOGS).add(WdBlocks.MOSSY_OAK_LOG.get(), WdBlocks.MOSSY_OAK_WOOD.get());
+
+        tag(BlockTags.BEE_GROWABLES).add(WdBlocks.BLACKBERRY_BUSH.get());
+        tag(BlockTags.FALL_DAMAGE_RESETTING).add(WdBlocks.BLACKBERRY_BUSH.get());
+        tag(BlockTags.MINEABLE_WITH_AXE).add(WdBlocks.BLACKBERRY_BUSH.get());
     }
 }

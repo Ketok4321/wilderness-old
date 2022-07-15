@@ -1,6 +1,7 @@
 package ketok.wilderness.data.server.tags;
 
 import ketok.wilderness.Wilderness;
+import ketok.wilderness.registry.WdItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -17,5 +18,7 @@ public class WdItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags() {
         copy(BlockTags.OAK_LOGS, ItemTags.OAK_LOGS);
+
+        tag(ItemTags.FOX_FOOD).add(WdItems.BLACKBERRIES.get());
     }
 }

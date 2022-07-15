@@ -1,6 +1,7 @@
 package ketok.wilderness.registry.worldgen;
 
 import ketok.wilderness.Wilderness;
+import ketok.wilderness.common.block.BlackberryBushBlock;
 import ketok.wilderness.common.worldgen.feature.FallenTreeFeature;
 import ketok.wilderness.common.worldgen.feature.treedecorators.BlockOnFallenLogDecorator;
 import ketok.wilderness.registry.WdBlocks;
@@ -120,6 +121,17 @@ public class WdConfiguredFeatures {
                             0.5F,
                             UniformInt.of(1, 2),
                             0.3F
+                    )
+            )
+    );
+
+    public static final RegistryObject<ConfiguredFeature<?, ?>> PATCH_BLACKBERRY_BUSH = HELPER.register("patch_blackberry_bush",
+            () -> new ConfiguredFeature<>(Feature.RANDOM_PATCH,
+                    FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockConfiguration(
+                                    BlockStateProvider.simple(WdBlocks.BLACKBERRY_BUSH.get().defaultBlockState().setValue(BlackberryBushBlock.AGE, 3))),
+                            List.of(Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK),
+                            32
                     )
             )
     );

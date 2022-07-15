@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "wilderness:purple_dye_from_blackberries"
+    ]
+  },
+  "criteria": {
+    "has_blackberries": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "wilderness:blackberries"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "wilderness:purple_dye_from_blackberries"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blackberries",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -41,6 +41,7 @@ public class WdBiomes {
         generation.addFeature(VEGETAL_DECORATION, BROWN_RED_MUSHROOM_PATCH.getHolder().get());
         generation.addFeature(LOCAL_MODIFICATIONS, FOREST_ROCK_RARE.getHolder().get());
         generation.addFeature(LOCAL_MODIFICATIONS, PATCH_MOSS.getHolder().get());
+        generation.addFeature(VEGETAL_DECORATION, PATCH_BLACKBERRY_BUSH.getHolder().get());
 
         MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder();
         farmAnimals(spawns);
