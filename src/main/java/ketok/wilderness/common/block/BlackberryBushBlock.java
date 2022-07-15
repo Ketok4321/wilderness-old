@@ -16,8 +16,6 @@ import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-//TODO: Sound events
-//TODO: Damage source
 public class BlackberryBushBlock extends SweetBerryBushBlock {
     public BlackberryBushBlock(Properties p_57249_) {
         super(p_57249_);
