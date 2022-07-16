@@ -1,9 +1,11 @@
 package ketok.wilderness.data;
 
+import com.teamabnormals.blueprint.core.util.registry.AbstractSubRegistryHelper;
 import ketok.wilderness.registry.WdBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.stream.Stream;
@@ -11,12 +13,12 @@ import java.util.stream.Stream;
 import static java.util.Objects.requireNonNull;
 
 public class WdDataGenUtil {
-    public static Stream<Block> wdBlocks() {
-        return WdBlocks.HELPER.getDeferredRegister().getEntries().stream().map(RegistryObject::get);
+    public static <T extends IForgeRegistryEntry<T>> Stream<T> entries(AbstractSubRegistryHelper<T> helper) {
+        return helper.getDeferredRegister().getEntries().stream().map(RegistryObject::get);
     }
 
     public static Stream<Block> wdBlockItems() {
-        return wdBlocks().filter(block -> block.asItem().getRegistryName().equals(block.getRegistryName()));
+        return entries(WdBlocks.HELPER).filter(block -> block.asItem().getRegistryName().equals(block.getRegistryName()));
     }
 
     public static String name(ForgeRegistryEntry<?> regEntry) {

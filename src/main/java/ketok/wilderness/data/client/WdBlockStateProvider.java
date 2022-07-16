@@ -8,12 +8,11 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import static ketok.wilderness.data.WdDataGenUtil.name;
-import static ketok.wilderness.data.WdDataGenUtil.suffix;
+import static ketok.wilderness.data.WdDataGenUtil.*;
 
 public class WdBlockStateProvider extends BlockStateProvider {
-    public WdBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, Wilderness.MOD_ID, exFileHelper);
+    public WdBlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+        super(generator, Wilderness.MOD_ID, existingFileHelper);
     }
 
     @Override

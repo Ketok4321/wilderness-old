@@ -36,7 +36,7 @@ public class WdBlocks {
     }
 
     @SubscribeEvent
-    public static void clientSetup(FMLClientSetupEvent event) {
+    public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(BLACKBERRY_BUSH.get(), RenderType.cutout());
         });

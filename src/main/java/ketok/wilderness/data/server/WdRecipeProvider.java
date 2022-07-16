@@ -14,8 +14,8 @@ import java.util.function.Consumer;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
 
 public class WdRecipeProvider extends RecipeProvider {
-    public WdRecipeProvider(DataGenerator pGenerator) {
-        super(pGenerator);
+    public WdRecipeProvider(DataGenerator generator) {
+        super(generator);
     }
 
     @Override

@@ -13,8 +13,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 public class WdBiomeTagsProvider extends BiomeTagsProvider {
-    public WdBiomeTagsProvider(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, Wilderness.MOD_ID, existingFileHelper);
+    public WdBiomeTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper existingFileHelper) {
+        super(generator, Wilderness.MOD_ID, existingFileHelper);
     }
 
     @Override

@@ -13,13 +13,12 @@ import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.LocationTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.RegistryObject;
 
 import static ketok.wilderness.data.WdDataGenUtil.*;
 
 public class WdAdvancementModifiersProvider extends AdvancementModifierProvider {
-    public WdAdvancementModifiersProvider(DataGenerator dataGenerator) {
-        super(dataGenerator, Wilderness.MOD_ID);
+    public WdAdvancementModifiersProvider(DataGenerator generator) {
+        super(generator, Wilderness.MOD_ID);
     }
 
     @Override
@@ -44,8 +43,7 @@ public class WdAdvancementModifiersProvider extends AdvancementModifierProvider 
     private CriteriaModifier createBalancedDiet() {
         CriteriaModifier.Builder builder = CriteriaModifier.builder(this.modId);
 
-        WdItems.HELPER.getDeferredRegister().getEntries().stream()
-                .map(RegistryObject::get)
+        entries(WdItems.HELPER)
                 .filter(Item::isEdible)
                 .forEach(item -> builder.addCriterion(name(item), ConsumeItemTrigger.TriggerInstance.usedItem(item)));
 

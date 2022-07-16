@@ -31,7 +31,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static ketok.wilderness.data.WdDataGenUtil.wdBlocks;
+import static ketok.wilderness.data.WdDataGenUtil.*;
 
 public class WdLootTableProvider extends LootTableProvider {
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(WdBlockLoot::new, LootContextParamSets.BLOCK));
@@ -64,7 +64,7 @@ public class WdLootTableProvider extends LootTableProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return wdBlocks()::iterator;
+            return entries(WdBlocks.HELPER)::iterator;
         }
     }
 }

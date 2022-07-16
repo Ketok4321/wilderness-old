@@ -21,7 +21,7 @@ import static net.minecraft.world.level.levelgen.GenerationStep.Decoration.*;
 @Mod.EventBusSubscriber(modid = Wilderness.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class WdBiomeModification {
     @SubscribeEvent
-    public static void biomeModification(BiomeLoadingEvent event) {
+    public static void onBiomeLoading(BiomeLoadingEvent event) {
         ResourceLocation biome = event.getName();
         BiomeGenerationSettingsBuilder generation = event.getGeneration();
         MobSpawnSettingsBuilder spawns = event.getSpawns();

@@ -9,8 +9,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 public class WdBlockTagsProvider extends BlockTagsProvider {
-    public WdBlockTagsProvider(DataGenerator pGenerator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pGenerator, Wilderness.MOD_ID, existingFileHelper);
+    public WdBlockTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper existingFileHelper) {
+        super(generator, Wilderness.MOD_ID, existingFileHelper);
     }
 
     @Override

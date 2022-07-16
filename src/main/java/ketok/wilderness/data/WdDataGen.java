@@ -19,28 +19,28 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 @Mod.EventBusSubscriber(modid = Wilderness.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WdDataGen {
     @SubscribeEvent
-    public static void dataSetup(GatherDataEvent event) {
-        DataGenerator dataGenerator = event.getGenerator();
+    public static void onDataSetup(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         if (event.includeServer()) {
-            dataGenerator.addProvider(new WdRecipeProvider(dataGenerator));
-            dataGenerator.addProvider(new WdLootTableProvider(dataGenerator));
-            dataGenerator.addProvider(new WdModdedBiomeSlicesProvider(dataGenerator));
+            generator.addProvider(new WdRecipeProvider(generator));
+            generator.addProvider(new WdLootTableProvider(generator));
+            generator.addProvider(new WdModdedBiomeSlicesProvider(generator));
 
             // Tags
-            WdBlockTagsProvider blockTags = new WdBlockTagsProvider(dataGenerator, existingFileHelper);
-            dataGenerator.addProvider(blockTags);
-            dataGenerator.addProvider(new WdItemTagsProvider(dataGenerator, blockTags, existingFileHelper));
-            dataGenerator.addProvider(new WdBiomeTagsProvider(dataGenerator, existingFileHelper));
+            WdBlockTagsProvider blockTags = new WdBlockTagsProvider(generator, existingFileHelper);
+            generator.addProvider(blockTags);
+            generator.addProvider(new WdItemTagsProvider(generator, blockTags, existingFileHelper));
+            generator.addProvider(new WdBiomeTagsProvider(generator, existingFileHelper));
 
             // Modifiers
-            dataGenerator.addProvider(new WdAdvancementModifiersProvider(dataGenerator));
+            generator.addProvider(new WdAdvancementModifiersProvider(generator));
         }
 
         if (event.includeClient()) {
-            dataGenerator.addProvider(new WdBlockStateProvider(dataGenerator, existingFileHelper));
-            dataGenerator.addProvider(new WdItemModelProvider(dataGenerator, existingFileHelper));
+            generator.addProvider(new WdBlockStateProvider(generator, existingFileHelper));
+            generator.addProvider(new WdItemModelProvider(generator, existingFileHelper));
         }
     }
 }

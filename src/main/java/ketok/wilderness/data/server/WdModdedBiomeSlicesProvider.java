@@ -28,8 +28,8 @@ import java.util.stream.Collectors;
 public class WdModdedBiomeSlicesProvider extends ModdedBiomeSliceProvider {
     private static final Registry<Biome> BIOME_REG = RegistryAccess.BUILTIN.get().registryOrThrow(Registry.BIOME_REGISTRY);
 
-    public WdModdedBiomeSlicesProvider(DataGenerator dataGenerator) {
-        super(dataGenerator, Wilderness.MOD_ID);
+    public WdModdedBiomeSlicesProvider(DataGenerator generator) {
+        super(generator, Wilderness.MOD_ID);
     }
 
     @Override
