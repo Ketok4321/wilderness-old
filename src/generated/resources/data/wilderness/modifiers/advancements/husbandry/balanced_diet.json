@@ -1,0 +1,29 @@
+{
+  "selector": "minecraft:husbandry/balanced_diet",
+  "priority": "normal",
+  "modifiers": [
+    {
+      "type": "criteria",
+      "config": {
+        "criteria": {
+          "wilderness:blackberries": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "wilderness:blackberries"
+                ]
+              }
+            }
+          }
+        },
+        "requirements": [
+          [
+            "wilderness:blackberries"
+          ]
+        ],
+        "should_replace_requirements": false
+      }
+    }
+  ]
+}
