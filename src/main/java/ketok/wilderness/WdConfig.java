@@ -9,6 +9,8 @@ public class WdConfig {
         public final ConfigValue<Boolean> removeLavaLakesFromForests;
         public final ConfigValue<Boolean> generateFallenTrees;
 
+        public final ConfigValue<Boolean> shearableBerries;
+
         Common(ForgeConfigSpec.Builder builder) {
             builder.push("biome_modification");
             generateFallenTrees = builder
@@ -17,6 +19,12 @@ public class WdConfig {
             removeLavaLakesFromForests = builder
                     .comment("If true, surface lava lakes will not generate in biomes with forest or taiga category")
                     .define("No lava lakes in forests", true);
+            builder.pop();
+
+            builder.push("other");
+            shearableBerries = builder
+                    .comment("If true, sweet berries and blackberries can be sheared in order to stop their growth")
+                    .define("Shearable berries", true);
             builder.pop();
         }
     }

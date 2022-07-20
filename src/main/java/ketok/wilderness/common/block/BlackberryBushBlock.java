@@ -16,11 +16,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class BlackberryBushBlock extends SweetBerryBushBlock {
+    // This property is actually added into SweetBerryBushBlock using mixin, I put it here because I couldn't find any better place for that
+    public static final BooleanProperty CAN_GROW = BooleanProperty.create("can_grow");
+
     public BlackberryBushBlock(Properties p_57249_) {
         super(p_57249_);
     }

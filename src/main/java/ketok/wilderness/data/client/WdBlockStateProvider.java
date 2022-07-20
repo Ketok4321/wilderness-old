@@ -1,6 +1,7 @@
 package ketok.wilderness.data.client;
 
 import ketok.wilderness.Wilderness;
+import ketok.wilderness.common.block.BlackberryBushBlock;
 import ketok.wilderness.registry.WdBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
@@ -23,9 +24,9 @@ public class WdBlockStateProvider extends BlockStateProvider {
     }
 
     private void berryBush(SweetBerryBushBlock block) {
-        getVariantBuilder(block).forAllStates(state -> {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
             String suffix = "_" + state.getValue(SweetBerryBushBlock.AGE);
             return ConfiguredModel.builder().modelFile(models().cross(name(block) + suffix, suffix(blockTexture(block), suffix))).build();
-        });
+        }, BlackberryBushBlock.CAN_GROW);
     }
 }
