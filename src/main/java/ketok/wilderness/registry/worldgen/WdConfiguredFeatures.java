@@ -118,7 +118,7 @@ public class WdConfiguredFeatures {
                             0,
                             5,
                             0.5F,
-                            UniformInt.of(1, 2),
+                            ConstantInt.of(1),
                             0.3F
                     )
             )
