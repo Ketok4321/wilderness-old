@@ -11,6 +11,9 @@ public class WdConfig {
 
         public final ConfigValue<Boolean> shearableBerries;
 
+        public final ConfigValue<Boolean> fastSweetBerries;
+        public final ConfigValue<Boolean> fastBlackberries;
+
         Common(ForgeConfigSpec.Builder builder) {
             builder.push("biome_modification");
             generateFallenTrees = builder
@@ -25,6 +28,12 @@ public class WdConfig {
             shearableBerries = builder
                     .comment("If true, sweet berries and blackberries can be sheared in order to stop their growth")
                     .define("Shearable berries", true);
+            fastSweetBerries = builder
+                    .comment("If true, sweet berries will be faster to eat")
+                    .define("Fast sweet berries", false);
+            fastBlackberries = builder
+                    .comment("If true, blackberries will be faster to eat")
+                    .define("Fast blackberries", true);
             builder.pop();
         }
     }
