@@ -15,7 +15,6 @@ bf2503c6c06e70e17f95ca19a1be2acbb820ef71 assets/wilderness/models/item/mossy_oak
 fbeec1eeb248e1ed52132d33d4903ede55418166 data/forge/tags/worldgen/biome/is_overworld.json
 5b0507f74d4b502ffb545e46ca09bbf4175836f0 data/minecraft/tags/blocks/bee_growables.json
 5b0507f74d4b502ffb545e46ca09bbf4175836f0 data/minecraft/tags/blocks/fall_damage_resetting.json
-5b0507f74d4b502ffb545e46ca09bbf4175836f0 data/minecraft/tags/blocks/mineable/axe.json
 3a92b099f48d6df40ae607ca88d0b626f17e66d4 data/minecraft/tags/blocks/oak_logs.json
 b9711682b9b8aad976fb027a48c1c288f20e56bd data/minecraft/tags/items/fox_food.json
 3a92b099f48d6df40ae607ca88d0b626f17e66d4 data/minecraft/tags/items/oak_logs.json
