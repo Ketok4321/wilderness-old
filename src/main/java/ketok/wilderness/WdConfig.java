@@ -33,7 +33,7 @@ public class WdConfig {
                     .define("Fast sweet berries", false);
             fastBlackberries = builder
                     .comment("If true, blackberries will be faster to eat")
-                    .define("Fast blackberries", true);
+                    .define("Fast blackberries", false);
             builder.pop();
         }
     }

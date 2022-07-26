@@ -31,7 +31,7 @@ public class WdItems {
     }
 
     private static class WdFoods {
-        public static final FoodProperties BLACKBERRIES = food(2, 0.1F).build();
+        public static final FoodProperties BLACKBERRIES = food(3, 0.1F).build();
 
         private static FoodProperties.Builder food(int nutrition, float saturationMod) {
             return new FoodProperties.Builder()
