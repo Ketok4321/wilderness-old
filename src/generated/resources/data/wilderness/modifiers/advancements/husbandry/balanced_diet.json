@@ -15,11 +15,24 @@
                 ]
               }
             }
+          },
+          "wilderness:blackberry_pie": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+              "item": {
+                "items": [
+                  "wilderness:blackberry_pie"
+                ]
+              }
+            }
           }
         },
         "requirements": [
           [
             "wilderness:blackberries"
+          ],
+          [
+            "wilderness:blackberry_pie"
           ]
         ],
         "should_replace_requirements": false

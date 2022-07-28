@@ -20,6 +20,7 @@ public class WdItemModelProvider extends ItemModelProvider {
         wdBlockItems().forEach(block -> withExistingParent(name(block), prefix("block/", block.getRegistryName())));
 
         generated(WdItems.BLACKBERRIES.get());
+        generated(WdItems.BLACKBERRY_PIE.get());
     }
 
     private void generated(Item item) {

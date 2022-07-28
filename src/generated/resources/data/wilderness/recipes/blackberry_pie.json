@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "wilderness:blackberries"
+    },
+    {
+      "item": "wilderness:blackberries"
+    },
+    {
+      "item": "wilderness:blackberries"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "result": {
+    "item": "wilderness:blackberry_pie"
+  }
+}

@@ -28,6 +28,13 @@ public class WdRecipeProvider extends RecipeProvider {
 
         woodFromLogs(consumer, WdBlocks.MOSSY_OAK_WOOD.get(), WdBlocks.MOSSY_OAK_LOG.get());
 
+        shapeless(WdItems.BLACKBERRY_PIE.get())
+                .requires(WdItems.BLACKBERRIES.get(), 3)
+                .requires(Items.SUGAR)
+                .requires(Items.WHEAT)
+                .unlockedBy("has_blackberries", has(WdItems.BLACKBERRIES.get()))
+                .save(consumer);
+
         shapeless(Items.PURPLE_DYE)
                 .requires(WdItems.BLACKBERRIES.get())
                 .group("purple_dye")

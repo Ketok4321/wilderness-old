@@ -19,11 +19,13 @@ public class WdItems {
     public static final ItemSubRegistryHelper HELPER = Wilderness.REGISTRY_HELPER.getItemSubHelper();
 
     public static final RegistryObject<Item> BLACKBERRIES = HELPER.createItem("blackberries", () -> new ItemNameBlockItem(WdBlocks.BLACKBERRY_BUSH.get(), new Item.Properties().food(WdFoods.BLACKBERRIES).tab(CreativeModeTab.TAB_FOOD)));
+    public static final RegistryObject<Item> BLACKBERRY_PIE = HELPER.createItem("blackberry_pie", () -> new Item(new Item.Properties().food(WdFoods.BLACKBERRY_PIE).tab(CreativeModeTab.TAB_FOOD)));
 
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             DataUtil.registerCompostable(BLACKBERRIES.get(), 0.3F);
+            DataUtil.registerCompostable(BLACKBERRY_PIE.get(), 1.0F);
 
             if(WdConfig.COMMON.fastSweetBerries.get()) Foods.SWEET_BERRIES.fastFood = true;
             if(WdConfig.COMMON.fastBlackberries.get()) WdFoods.BLACKBERRIES.fastFood = true;
@@ -31,7 +33,9 @@ public class WdItems {
     }
 
     private static class WdFoods {
+
         public static final FoodProperties BLACKBERRIES = food(3, 0.1F).build();
+        public static final FoodProperties BLACKBERRY_PIE = food(8, 0.6F).build();
 
         private static FoodProperties.Builder food(int nutrition, float saturationMod) {
             return new FoodProperties.Builder()
