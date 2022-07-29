@@ -22,7 +22,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-//FIXME: Mushrooms can generate where they can't be placed normally so they break on block update
 public class FallenTreeFeature extends Feature<FallenTreeFeature.Config> {
     public record Config(BlockStateProvider block, IntProvider length, List<TreeDecorator> decorators) implements FeatureConfiguration {
         public static final Codec<Config> CODEC = RecordCodecBuilder.create(builder ->
