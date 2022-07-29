@@ -46,10 +46,9 @@ public class WdConfiguredFeatures {
     private static BlockOnFallenLogDecorator block(Block block, float chance) {
         return new BlockOnFallenLogDecorator(block, chance);
     }
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_OAK = fallenTree("fallen_oak", () -> BlockStateProviders.MOSSY_OAK_LOG, block(Blocks.MOSS_CARPET, 0.4F), block(Blocks.BROWN_MUSHROOM, 0.2F), block(Blocks.RED_MUSHROOM, 0.2F));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_SWAMP_TREE = fallenTree("fallen_swamp_tree", () -> BlockStateProvider.simple(Blocks.OAK_LOG), TrunkVineDecorator.INSTANCE, block(Blocks.RED_MUSHROOM, 0.3F), block(Blocks.BROWN_MUSHROOM, 0.2F)); //TODO: Compat with mods that add swamp woodset
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_BIRCH = fallenTree("fallen_birch", () -> BlockStateProvider.simple(Blocks.BIRCH_LOG), block(Blocks.MOSS_CARPET, 0.4F), block(Blocks.BROWN_MUSHROOM, 0.2F), block(Blocks.RED_MUSHROOM, 0.2F));
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_SPRUCE = fallenTree("fallen_spruce", () -> BlockStateProvider.simple(Blocks.SPRUCE_LOG), block(Blocks.MOSS_CARPET, 0.3F), block(Blocks.BROWN_MUSHROOM, 0.3F), block(Blocks.RED_MUSHROOM, 0.3F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_OAK = fallenTree("fallen_oak", () -> BlockStateProviders.MOSSY_OAK_LOG, block(Blocks.MOSS_CARPET, 0.4F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_BIRCH = fallenTree("fallen_birch", () -> BlockStateProvider.simple(Blocks.BIRCH_LOG), block(Blocks.MOSS_CARPET, 0.4F));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_SPRUCE = fallenTree("fallen_spruce", () -> BlockStateProvider.simple(Blocks.SPRUCE_LOG), block(Blocks.MOSS_CARPET, 0.3F));
     public static final RegistryObject<ConfiguredFeature<?, ?>> FALLEN_JUNGLE_TREE = fallenTree("fallen_jungle_tree", () -> BlockStateProvider.simple(Blocks.JUNGLE_LOG), TrunkVineDecorator.INSTANCE, block(Blocks.MOSS_CARPET, 0.5F));
 
     // Trees

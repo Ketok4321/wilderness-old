@@ -41,9 +41,6 @@ public class WdBiomeModification {
         if(DataUtil.matchesKeys(biome, FOREST, OLD_GROWTH_FOREST.getKey(), MIXED_FOREST.getKey())) {
             generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_OAK.getHolder().get());
         }
-        if(DataUtil.matchesKeys(biome, SWAMP)) {
-            generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_SWAMP_TREE.getHolder().get());
-        }
         if(DataUtil.matchesKeys(biome, BIRCH_FOREST, OLD_GROWTH_BIRCH_FOREST)) {
             generation.getFeatures(VEGETAL_DECORATION).add(WdPlacedFeatures.FALLEN_BIRCH.getHolder().get());
         }
