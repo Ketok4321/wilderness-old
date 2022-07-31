@@ -128,13 +128,9 @@ public class WdConfiguredFeatures {
             () -> new ConfiguredFeature<>(Feature.RANDOM_PATCH,
                     FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
                             new SimpleBlockConfiguration(
-                                    new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                            .add(BlackberryBushBlock.aged(3), 2)
-                                            .add(BlackberryBushBlock.aged(2), 1)
-                                    )
+                                    BlockStateProvider.simple(BlackberryBushBlock.aged(3))
                             ),
-                            List.of(Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK),
-                            64
+                            List.of(Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK)
                     )
             )
     );
